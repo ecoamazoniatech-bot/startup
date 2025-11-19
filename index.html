@@ -4,20 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StartupOS - Gerenciador de Startups</title>
+    <title>StartupOS - Tycoon Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'primary': '#3B82F6',
-              'primary-dark': '#2563EB',
-              'secondary': '#10B981',
-              'light': '#F9FAFB',
+              'primary': '#8B5CF6', // Violet-500
+              'primary-dark': '#7C3AED', // Violet-600
+              'secondary': '#EC4899', // Pink-500
+              'accent': '#F59E0B', // Amber-500
+              'light': '#F3F4F6',
               'dark': '#1F2937',
               'medium': '#6B7280',
+              'surface': '#FFFFFF',
             },
+            fontFamily: {
+              sans: ['Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            },
+            boxShadow: {
+              'game': '0 4px 0 0 rgba(0, 0, 0, 0.1)', // Button press effect shadow
+              'card': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            }
           }
         }
       }
@@ -33,8 +42,25 @@
   }
 }
 </script>
+<style>
+  /* Custom Scrollbar for game feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C4B5FD;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8B5CF6;
+  }
+</style>
 </head>
-  <body class="bg-light">
+  <body class="bg-slate-100 selection:bg-secondary selection:text-white">
     <div id="root"></div>
   </body>
 </html>

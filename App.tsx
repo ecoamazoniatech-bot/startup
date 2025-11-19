@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import Login from './views/Login';
 import Register from './views/Register';
@@ -9,6 +10,7 @@ import Financials from './views/Financials';
 import Roadmap from './views/Roadmap';
 import OKRs from './views/OKRs';
 import Chat from './views/Chat';
+import Settings from './views/Settings';
 import { useStartupData } from './hooks/useStartupData';
 import type { Page } from './types';
 
@@ -30,7 +32,7 @@ const App: React.FC = () => {
     }
   };
   
-  const handleRegister = (user: Omit<import('./types').TeamMember, 'id' | 'avatar' | 'roleType'>) => {
+  const handleRegister = (user: Omit<import('./types').TeamMember, 'id' | 'avatar' | 'roleType' | 'xp' | 'level' | 'badges'>) => {
       startupData.registerUser(user);
       setAuthState('LOGGED_IN');
       setCurrentPage('dashboard');
@@ -42,7 +44,6 @@ const App: React.FC = () => {
   };
 
   const CurrentView = useMemo(() => {
-    // startupData.currentUser can be null for a brief moment.
     if (!startupData.currentUser) return <Dashboard data={startupData} />;
 
     switch (currentPage) {
@@ -58,6 +59,8 @@ const App: React.FC = () => {
         return <OKRs data={startupData} />;
       case 'chat':
         return <Chat data={startupData} />;
+      case 'settings':
+        return <Settings data={startupData} />;
       default:
         return <Dashboard data={startupData} />;
     }
@@ -72,11 +75,11 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-light text-dark">
-      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    <div className="flex h-screen bg-slate-50 text-dark font-sans">
+      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} companyName={startupData.settings.name} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header user={startupData.currentUser} onLogout={handleLogout} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-light p-4 sm:p-6 lg:p-8">
+        <Header user={startupData.currentUser} onLogout={handleLogout} companyName={startupData.settings.name} />
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-4 sm:p-6 lg:p-8">
           {CurrentView}
         </main>
       </div>
