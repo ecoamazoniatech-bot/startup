@@ -1,0 +1,5 @@
+{
+  "name": "StartupOS - Gerenciador de Startups",
+  "description": "Um dashboard completo para gerenciar as operações de uma startup, incluindo equipe, finanças, roadmap de produtos e OKRs, com insights de IA do Gemini.",
+  "requestFramePermissions": []
+}
